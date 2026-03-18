@@ -4,17 +4,13 @@ import 'student_schedule_screen.dart';
 import 'student_home_screen.dart';
 import 'student_vacancies_screen.dart';
 import 'student_profile_screen.dart';
-
 class StudentMainScreen extends StatefulWidget {
   const StudentMainScreen({super.key});
-
   @override
   State<StudentMainScreen> createState() => _StudentMainScreenState();
 }
-
 class _StudentMainScreenState extends State<StudentMainScreen> {
   int _currentIndex = 2;
-
   final List<Widget> _screens = [
     const StudentContactsScreen(),
     const StudentScheduleScreen(),
@@ -22,7 +18,6 @@ class _StudentMainScreenState extends State<StudentMainScreen> {
     const StudentVacanciesScreen(),
     const StudentProfileScreen(),
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,50 +33,50 @@ class _StudentMainScreenState extends State<StudentMainScreen> {
             ),
           ],
         ),
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                _buildNavItem(
-                  index: 0,
-                  activeIcon: 'assets/icons/student/contacts_active.png',
-                  inactiveIcon: 'assets/icons/student/contacts.png',
-                  label: 'Контакты',
-                ),
-                _buildNavItem(
-                  index: 1,
-                  activeIcon: 'assets/icons/student/schedule_active.png',
-                  inactiveIcon: 'assets/icons/student/schedule.png',
-                  label: 'Расписание',
-                ),
-                _buildNavItem(
-                  index: 2,
-                  activeIcon: 'assets/icons/student/home_active.png',
-                  inactiveIcon: 'assets/icons/student/home.png',
-                  label: 'Главное',
-                ),
-                _buildNavItem(
-                  index: 3,
-                  activeIcon: 'assets/icons/student/vacancies_active.png',
-                  inactiveIcon: 'assets/icons/student/vacancies.png',
-                  label: 'Вакансии',
-                ),
-                _buildNavItem(
-                  index: 4,
-                  activeIcon: 'assets/icons/student/profile_active.png',
-                  inactiveIcon: 'assets/icons/student/profile.png',
-                  label: 'Профиль',
-                ),
-              ],
-            ),
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).padding.bottom,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _buildNavItem(
+                index: 0,
+                activeIcon: 'assets/icons/student/contacts_active.png',
+                inactiveIcon: 'assets/icons/student/contacts.png',
+                label: 'Контакты',
+              ),
+              _buildNavItem(
+                index: 1,
+                activeIcon: 'assets/icons/student/schedule_active.png',
+                inactiveIcon: 'assets/icons/student/schedule.png',
+                label: 'Расписание',
+              ),
+              _buildNavItem(
+                index: 2,
+                activeIcon: 'assets/icons/student/home_active.png',
+                inactiveIcon: 'assets/icons/student/home.png',
+                label: 'Главное',
+              ),
+              _buildNavItem(
+                index: 3,
+                activeIcon: 'assets/icons/student/vacancies_active.png',
+                inactiveIcon: 'assets/icons/student/vacancies.png',
+                label: 'Вакансии',
+              ),
+              _buildNavItem(
+                index: 4,
+                activeIcon: 'assets/icons/student/profile_active.png',
+                inactiveIcon: 'assets/icons/student/profile.png',
+                label: 'Профиль',
+              ),
+            ],
           ),
         ),
       ),
     );
   }
-
   Widget _buildNavItem({
     required int index,
     required String activeIcon,
@@ -89,7 +84,6 @@ class _StudentMainScreenState extends State<StudentMainScreen> {
     required String label,
   }) {
     final bool isSelected = _currentIndex == index;
-
     return GestureDetector(
       onTap: () {
         setState(() {

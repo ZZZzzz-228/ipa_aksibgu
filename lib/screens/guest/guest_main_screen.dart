@@ -2,23 +2,18 @@ import 'package:flutter/material.dart';
 import 'about_college_screen.dart';
 import 'guest_contacts_screen.dart';
 import 'guest_profile_screen.dart';
-
 class GuestMainScreen extends StatefulWidget {
   const GuestMainScreen({super.key});
-
   @override
   State<GuestMainScreen> createState() => _GuestMainScreenState();
 }
-
 class _GuestMainScreenState extends State<GuestMainScreen> {
   int _currentIndex = 1;
-
   final List<Widget> _screens = [
     const GuestContactsScreen(),
     const AboutCollegeScreen(),
     const GuestProfileScreen(),
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,38 +29,38 @@ class _GuestMainScreenState extends State<GuestMainScreen> {
             ),
           ],
         ),
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                _buildNavItem(
-                  index: 0,
-                  activeIcon: 'assets/icons/guest/contacts_active.png',
-                  inactiveIcon: 'assets/icons/guest/contacts.png',
-                  label: 'Контакты',
-                ),
-                _buildNavItem(
-                  index: 1,
-                  activeIcon: 'assets/icons/guest/applicant_active.png',
-                  inactiveIcon: 'assets/icons/guest/applicant.png',
-                  label: 'Абитуриенту',
-                ),
-                _buildNavItem(
-                  index: 2,
-                  activeIcon: 'assets/icons/guest/profile_active.png',
-                  inactiveIcon: 'assets/icons/guest/profile.png',
-                  label: 'Профиль',
-                ),
-              ],
-            ),
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).padding.bottom,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _buildNavItem(
+                index: 0,
+                activeIcon: 'assets/icons/guest/contacts_active.png',
+                inactiveIcon: 'assets/icons/guest/contacts.png',
+                label: 'Контакты',
+              ),
+              _buildNavItem(
+                index: 1,
+                activeIcon: 'assets/icons/guest/applicant_active.png',
+                inactiveIcon: 'assets/icons/guest/applicant.png',
+                label: 'Абитуриенту',
+              ),
+              _buildNavItem(
+                index: 2,
+                activeIcon: 'assets/icons/guest/profile_active.png',
+                inactiveIcon: 'assets/icons/guest/profile.png',
+                label: 'Профиль',
+              ),
+            ],
           ),
         ),
       ),
     );
   }
-
   Widget _buildNavItem({
     required int index,
     required String activeIcon,
@@ -73,7 +68,6 @@ class _GuestMainScreenState extends State<GuestMainScreen> {
     required String label,
   }) {
     final bool isSelected = _currentIndex == index;
-
     return GestureDetector(
       onTap: () {
         setState(() {

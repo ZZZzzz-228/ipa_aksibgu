@@ -344,8 +344,6 @@ const List<Partner> partners = [
   Partner(name: 'ООО «Аэропорт Емельяново»', description: 'Международный аэропорт Красноярска', icon: Icons.local_airport, color: Color(0xFF00838F), url: 'https://www.kja.aero/', imagePath: 'assets/images/partners/emelyanov.png'),
   Partner(name: 'АО «ТК «РусГидро»»', description: 'Гидроэнергетическая компания', icon: Icons.water, color: Color(0xFF1976D2), url: 'https://tk.rushydro.ru/activity/', imagePath: 'assets/images/partners/rushydro.png'),
   Partner(name: 'ОКБ «Микрон»', description: 'Опытно-конструкторское бюро микроэлектроники', icon: Icons.memory, color: Color(0xFF0D47A1), url: 'https://okbmikron.ru/', imagePath: 'assets/images/partners/mikron.png'),
-
-
 ];
 // ─────────────────────────────────────────────────────────────────────────────
 // Экран «Абитуриенту»
@@ -374,7 +372,7 @@ class _AboutCollegeScreenState extends State<AboutCollegeScreen> {
     _scrollController.addListener(_onScroll);
   }
   void _onScroll() {
-    final shouldShow = _scrollController.offset > 40;
+    final shouldShow = _scrollController.offset > 10;
     if (shouldShow != _showMainTitle) setState(() => _showMainTitle = shouldShow);
   }
   @override

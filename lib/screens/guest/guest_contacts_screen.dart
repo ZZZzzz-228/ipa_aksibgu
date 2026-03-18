@@ -16,7 +16,7 @@ class _GuestContactsScreenState extends State<GuestContactsScreen> {
     _scrollController.addListener(_onScroll);
   }
   void _onScroll() {
-    final shouldShow = _scrollController.offset > 40;
+    final shouldShow = _scrollController.offset > 10;
     if (shouldShow != _showMainTitle) setState(() => _showMainTitle = shouldShow);
   }
   @override
