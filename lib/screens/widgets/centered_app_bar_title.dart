@@ -11,7 +11,7 @@ class CenteredAppBarTitle extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: Image.asset(
-              'assets/images/application logo/logo.png',
+              'assets/images/application_logo/logo.png',
               width: 40,
               height: 40,
               fit: BoxFit.cover,

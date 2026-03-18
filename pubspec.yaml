@@ -22,7 +22,7 @@ flutter:
   # Все необходимые ассеты
   assets:
     - assets/images/
-    - assets/images/application logo/
+    - assets/images/application_logo/
     - assets/images/college/
     - assets/images/contacts/
     - assets/images/education/
@@ -36,4 +36,4 @@ flutter:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/images/application logo/icon42.png"
+  image_path: "assets/images/application_logo/icon42.png"
