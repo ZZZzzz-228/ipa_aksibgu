@@ -2,36 +2,29 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../widgets/centered_app_bar_title.dart';
-
 class GuestContactsScreen extends StatefulWidget {
   const GuestContactsScreen({super.key});
-
   @override
   State<GuestContactsScreen> createState() => _GuestContactsScreenState();
 }
-
 class _GuestContactsScreenState extends State<GuestContactsScreen> {
   final ScrollController _scrollController = ScrollController();
   bool _showMainTitle = false;
-
   @override
   void initState() {
     super.initState();
     _scrollController.addListener(_onScroll);
   }
-
   void _onScroll() {
     final shouldShow = _scrollController.offset > 40;
     if (shouldShow != _showMainTitle) setState(() => _showMainTitle = shouldShow);
   }
-
   @override
   void dispose() {
     _scrollController.removeListener(_onScroll);
     _scrollController.dispose();
     super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,8 +76,6 @@ class _GuestContactsScreenState extends State<GuestContactsScreen> {
                         ),
                       ),
                       const SizedBox(height: 24),
-
-                      // Телефоны
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -127,13 +118,12 @@ class _GuestContactsScreenState extends State<GuestContactsScreen> {
                           ),
                           _buildContactItem(
                             Icons.language,
-                            'sibgu_ru',
+                            'abiturient.sibsau.ru',
                             const Color(0xFF4A90E2),
                           ),
                         ],
                       ),
                       const SizedBox(height: 24),
-
                       // Иконки с информацией
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -183,7 +173,6 @@ class _GuestContactsScreenState extends State<GuestContactsScreen> {
                   ),
                 ),
                 const SizedBox(height: 24),
-
                 // Карточка директора
                 _buildStaffCard(
                   name: 'Тимошев Павел Викторович',
@@ -191,11 +180,10 @@ class _GuestContactsScreenState extends State<GuestContactsScreen> {
                   email: 'ak@sibsau.ru',
                   phone: '2919115',
                   hours: 'Часы приёма: вторник, четверг с 14:00 до 16:00',
-                  photo: 'assets/images/director_photo.png',
+                  photo: 'assets/images/contacts/director_photo.png',
                   gradientColors: const [Color(0xFF4A90E2), Color(0xFF64B5F6)],
                 ),
                 const SizedBox(height: 16),
-
                 // 11 дополнительных карточек сотрудников
                 _buildStaffCard(
                   name: 'Шувалова М.А.',
@@ -203,110 +191,100 @@ class _GuestContactsScreenState extends State<GuestContactsScreen> {
                   email: 'shuvalovav@sibsau.ru',
                   phone: '+7(391) 291-91-15',
                   hours: 'Часы приёма: понедельник, среда с 10:00 до 12:00',
-                  photo: 'assets/images/staff_1.png',
+                  photo: 'assets/images/contacts/staff_1.png',
                   gradientColors: const [Color(0xFF42A5F5), Color(0xFF90CAF9)],
                 ),
                 const SizedBox(height: 16),
-
                 _buildStaffCard(
                   name: 'Чепенко С.А.',
                   position: 'Заместитель директора по Учебно-воспитательной работе',
                   email: 'students@sibsau.ru',
                   phone: '+7 (391) 264-15-88',
                   hours: 'Часы приёма: вторник, четверг с 10:00 до 12:00',
-                  photo: 'assets/images/staff_2.png',
+                  photo: 'assets/images/contacts/staff_2.png',
                   gradientColors: const [Color(0xFF66BB6A), Color(0xFFA5D6A7)],
                 ),
                 const SizedBox(height: 16),
-
                 _buildStaffCard(
                   name: 'Позновский В.А.',
                   position: 'Заместитель директора по Учебно-производственной работе',
                   email: 'sidorova@sibsau.ru',
                   phone: '2641588',
                   hours: 'Часы приёма: понедельник, пятница с 14:00 до 16:00',
-                  photo: 'assets/images/staff_3.png',
+                  photo: 'assets/images/contacts/staff_3.png',
                   gradientColors: const [Color(0xFFAB47BC), Color(0xFFCE93D8)],
                 ),
                 const SizedBox(height: 16),
-
                 _buildStaffCard(
                   name: 'Козырева С.В.',
                   position: 'Заместитель директора по внебюджетной деятельности',
                   email: 'kozyrevasv@sibsau.ru',
                   phone: '+7(391) 291-91-15',
                   hours: 'Часы приёма: среда с 10:00 до 12:00',
-                  photo: 'assets/images/staff_4.png',
+                  photo: 'assets/images/contacts/staff_4.png',
                   gradientColors: const [Color(0xFF29B6F6), Color(0xFF81D4FA)],
                 ),
                 const SizedBox(height: 16),
-
                 _buildStaffCard(
                   name: 'Курдояк Е.Д.',
                   position: 'Заведующая отделением №1 Направление: «Технология машиностроения»',
                   email: 'students@sibsau.ru',
                   phone: '+7 (391) 264-15-88',
                   hours: 'Часы приёма: вторник с 14:00 до 16:00',
-                  photo: 'assets/images/staff_5.png',
+                  photo: 'assets/images/contacts/staff_5.png',
                   gradientColors: const [Color(0xFFEF5350), Color(0xFFEF9A9A)],
                 ),
                 const SizedBox(height: 16),
-
                 _buildStaffCard(
                   name: 'Малиновская Е.А.',
                   position: 'Заведующая отделением №2 Направления: «Сварочное производство» «Контрольно-измерительные приборы и автоматика» «Эксплуатация летательных аппаратов»',
                   email: 'students@sibsau.ru',
                   phone: '+7 (391) 264-15-88',
                   hours: 'Часы приёма: четверг с 10:00 до 12:00',
-                  photo: 'assets/images/staff_6.png',
+                  photo: 'assets/images/contacts/staff_6.png',
                   gradientColors: const [Color(0xFFFFA726), Color(0xFFFFCC80)],
                 ),
                 const SizedBox(height: 16),
-
                 _buildStaffCard(
                   name: 'Кольга Е.В.',
                   position: 'Заведующая отделением №5 Направление: «Безопасность автоматизированных систем» «Информационные системы и технологии»',
                   email: 'students@sibsau.ru',
                   phone: '+7 (391) 264-15-88',
                   hours: 'Часы приёма: понедельник с 14:00 до 16:00',
-                  photo: 'assets/images/icon42.png',
+                  photo: 'assets/images/application logo/icon42.png',
                   gradientColors: const [Color(0xFF5C6BC0), Color(0xFF9FA8DA)],
                 ),
                 const SizedBox(height: 16),
-
                 _buildStaffCard(
                   name: 'Гурьянов А.С.',
                   position: 'Заведующий отделением №6 Направление:«Специальные машины и устройства» «Мобильная робототехника» «Автоматические системы управления»',
                   email: 'kuznetsov@sibsau.ru',
                   phone: '2640664',
                   hours: 'Часы приёма: ежедневно с 09:00 до 12:00',
-                  photo: 'assets/images/icon42.png',
+                  photo: 'assets/images/application logo/icon42.png',
                   gradientColors: const [Color(0xFF26A69A), Color(0xFF80CBC4)],
                 ),
                 const SizedBox(height: 16),
-
                 _buildStaffCard(
                   name: 'Коткова Е.А.',
                   position: 'Заведующий отделением №7 Направление:«Безопасность автоматизированных систем» «Информационные системы и технологии»',
                   email: 'lebedeva@sibsau.ru',
                   phone: '+7 (391) 264-15-88',
                   hours: 'Часы приёма: ежедневно с 09:00 до 16:00',
-                  photo: 'assets/images/icon42.png',
+                  photo: 'assets/images/application logo/icon42.png',
                   gradientColors: const [Color(0xFFEC407A), Color(0xFFF48FB1)],
                 ),
                 const SizedBox(height: 16),
-
                 _buildStaffCard(
                   name: 'Букалина Д.А.',
                   position: 'Заведующий отделением №8 Направление:«Сетевое администрирование» «Программирование и программное обеспечение»',
                   email: 'sokolov@sibsau.ru',
                   phone: '2640666',
                   hours: 'Часы приёма: среда, пятница с 10:00 до 14:00',
-                  photo: 'assets/images/icon42.png',
+                  photo: 'assets/images/application logo/icon42.png',
                   gradientColors: const [Color(0xFF7E57C2), Color(0xFFB39DDB)],
                 ),
                 const SizedBox(height: 16),
-
               ],
             ),
           ),
@@ -314,7 +292,6 @@ class _GuestContactsScreenState extends State<GuestContactsScreen> {
       ),
     );
   }
-
   Widget _buildStaffCard({
     required String name,
     required String position,
@@ -351,7 +328,6 @@ class _GuestContactsScreenState extends State<GuestContactsScreen> {
               ),
             ),
           ),
-
           const SizedBox(height: 16),
           Container(
             padding: const EdgeInsets.all(20),
@@ -446,7 +422,6 @@ class _GuestContactsScreenState extends State<GuestContactsScreen> {
       ),
     );
   }
-
   Widget _buildContactItem(IconData icon, String text, Color color) {
     return GestureDetector(
       onTap: () async {
@@ -482,16 +457,13 @@ class _GuestContactsScreenState extends State<GuestContactsScreen> {
     );
   }
 }
-
 // ─────────────────────────────────────────────────────────────────────────────
 // Frosted header для страницы Контакты:
 // при скролле иконка и «Центр карьеры» исчезают, появляется «Контакты»
 // ─────────────────────────────────────────────────────────────────────────────
-
 class _FrostedContactsHeader extends StatelessWidget {
   final bool showCenterTitle;
   const _FrostedContactsHeader({required this.showCenterTitle});
-
   @override
   Widget build(BuildContext context) {
     return ClipRect(
@@ -507,7 +479,6 @@ class _FrostedContactsHeader extends StatelessWidget {
               child: Container(color: Colors.white.withOpacity(0.72)),
             ),
           ),
-
           // «Центр карьеры» — исчезает при скролле
           SafeArea(
             bottom: false,
@@ -523,7 +494,6 @@ class _FrostedContactsHeader extends StatelessWidget {
               ),
             ),
           ),
-
           // «Контакты» — плавно появляется по центру при скролле
           SafeArea(
             bottom: false,

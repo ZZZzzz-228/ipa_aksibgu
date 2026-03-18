@@ -1,30 +1,23 @@
 import 'dart:async';
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import '../widgets/centered_app_bar_title.dart';
-
 class StudentHomeScreen extends StatefulWidget {
   const StudentHomeScreen({super.key});
-
   @override
   State<StudentHomeScreen> createState() => _StudentHomeScreenState();
 }
-
 class _StudentHomeScreenState extends State<StudentHomeScreen> {
   // Список просмотренных историй
   final Set<int> _viewedStories = {};
-
   void _markAsViewed(int index) {
     setState(() {
       _viewedStories.add(index);
     });
   }
-
   bool _isViewed(int index) {
     return _viewedStories.contains(index);
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +29,6 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
         child: Column(
           children: [
             const SizedBox(height: 16),
-
             // ЛЕНТА ИСТОРИЙ (STORIES) - ПРЯМОУГОЛЬНИКИ
             SizedBox(
               height: 180,
@@ -82,9 +74,7 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
                 ],
               ),
             ),
-
             const SizedBox(height: 24),
-
             // Новостная карточка 1
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -111,7 +101,7 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
                         topRight: Radius.circular(12),
                       ),
                       child: Image.asset(
-                        'assets/images/news1.jpg',
+                        'assets/images/news/news1.jpg',
                         width: double.infinity,
                         height: 180,
                         fit: BoxFit.cover,
@@ -156,7 +146,6 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
               ),
             ),
             const SizedBox(height: 16),
-
             // Новостная карточка 2
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -183,7 +172,7 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
                         topRight: Radius.circular(12),
                       ),
                       child: Image.asset(
-                        'assets/images/news2.jpg',
+                        'assets/images/news/news2.jpg',
                         width: double.infinity,
                         height: 180,
                         fit: BoxFit.cover,
@@ -233,7 +222,6 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
       ),
     );
   }
-
   // ПРЯМОУГОЛЬНАЯ КАРТОЧКА ИСТОРИИ С ИЗОБРАЖЕНИЕМ
   Widget _buildStoryItem(
       BuildContext context,
@@ -243,10 +231,8 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
       String storyContent,
       ) {
     final bool isViewed = _isViewed(index);
-
     // Путь к изображению истории
-    final String imagePath = 'assets/images/story${index + 1}.jpg';
-
+    final String imagePath = 'assets/images/stories/story${index + 1}.jpg';
     return GestureDetector(
       onTap: () async {
         await _openStoryViewer(context, index, title, storyContent, borderColor);
@@ -329,7 +315,6 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
       ),
     );
   }
-
   // ОТКРЫТЬ ПРОСМОТР ИСТОРИЙ
   Future<void> _openStoryViewer(
       BuildContext context,
@@ -348,31 +333,31 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
               title: 'Зарница 2.0',
               content: 'В Волгограде наградили победителей военно-патриотической игры',
               color: Colors.blue,
-              imagePath: 'assets/images/story1.jpg',
+              imagePath: 'assets/images/stories/story1.jpg',
             ),
             StoryData(
               title: 'Спорт',
               content: 'Студенты колледжа заняли первое место в соревнованиях',
               color: Colors.green,
-              imagePath: 'assets/images/story2.jpg',
+              imagePath: 'assets/images/stories/story2.jpg',
             ),
             StoryData(
               title: 'Новости',
               content: 'Открытие новой лаборатории по робототехнике',
               color: Colors.orange,
-              imagePath: 'assets/images/story3.jpg',
+              imagePath: 'assets/images/stories/story3.jpg',
             ),
             StoryData(
               title: 'События',
               content: 'День открытых дверей - приглашаем всех желающих',
               color: Colors.purple,
-              imagePath: 'assets/images/story4.jpg',
+              imagePath: 'assets/images/stories/story4.jpg',
             ),
             StoryData(
               title: 'Достижения',
               content: 'Наши студенты стали призерами WorldSkills',
               color: Colors.red,
-              imagePath: 'assets/images/story5.jpg',
+              imagePath: 'assets/images/stories/story5.jpg',
             ),
           ],
         ),
@@ -380,14 +365,12 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
     );
   }
 }
-
 // МОДЕЛЬ ДАННЫХ ИСТОРИИ
 class StoryData {
   final String title;
   final String content;
   final Color color;
   final String imagePath;
-
   StoryData({
     required this.title,
     required this.content,
@@ -395,28 +378,23 @@ class StoryData {
     required this.imagePath,
   });
 }
-
 // ЭКРАН ПРОСМОТРА ИСТОРИЙ
 class StoryViewerScreen extends StatefulWidget {
   final int initialIndex;
   final List<StoryData> stories;
-
   const StoryViewerScreen({
     super.key,
     required this.initialIndex,
     required this.stories,
   });
-
   @override
   State<StoryViewerScreen> createState() => _StoryViewerScreenState();
 }
-
 class _StoryViewerScreenState extends State<StoryViewerScreen> {
   late int _currentIndex;
   late PageController _pageController;
   Timer? _timer;
   double _progress = 0.0;
-
   @override
   void initState() {
     super.initState();
@@ -424,23 +402,19 @@ class _StoryViewerScreenState extends State<StoryViewerScreen> {
     _pageController = PageController(initialPage: _currentIndex);
     _startTimer();
   }
-
   @override
   void dispose() {
     _timer?.cancel();
     _pageController.dispose();
     super.dispose();
   }
-
   // ЗАПУСТИТЬ ТАЙМЕР 5 СЕКУНД
   void _startTimer() {
     _timer?.cancel();
     _progress = 0.0;
-
     _timer = Timer.periodic(const Duration(milliseconds: 50), (timer) {
       setState(() {
         _progress += 0.05 / 5; // 5 секунд = 100%
-
         if (_progress >= 1.0) {
           _progress = 0.0;
           _nextStory();
@@ -448,7 +422,6 @@ class _StoryViewerScreenState extends State<StoryViewerScreen> {
       });
     });
   }
-
   // СЛЕДУЮЩАЯ ИСТОРИЯ
   void _nextStory() {
     if (_currentIndex < widget.stories.length - 1) {
@@ -465,7 +438,6 @@ class _StoryViewerScreenState extends State<StoryViewerScreen> {
       Navigator.pop(context);
     }
   }
-
   // ПРЕДЫДУЩАЯ ИСТОРИЯ
   void _previousStory() {
     if (_currentIndex > 0) {
@@ -480,7 +452,6 @@ class _StoryViewerScreenState extends State<StoryViewerScreen> {
       _startTimer();
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -489,7 +460,6 @@ class _StoryViewerScreenState extends State<StoryViewerScreen> {
         onTapUp: (details) {
           final screenWidth = MediaQuery.of(context).size.width;
           final tapPosition = details.globalPosition.dx;
-
           // Левая половина - предыдущая история
           if (tapPosition < screenWidth / 2) {
             _previousStory();
@@ -515,7 +485,6 @@ class _StoryViewerScreenState extends State<StoryViewerScreen> {
                 return _buildStoryContent(widget.stories[index]);
               },
             ),
-
             // ПРОГРЕСС БАР СВЕРХУ — одна полоска на текущую историю
             SafeArea(
               child: Column(
@@ -540,7 +509,6 @@ class _StoryViewerScreenState extends State<StoryViewerScreen> {
                       ),
                     ),
                   ),
-
                   // ЗАГОЛОВОК И КНОПКА ЗАКРЫТЬ
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -548,7 +516,7 @@ class _StoryViewerScreenState extends State<StoryViewerScreen> {
                       children: [
                         ClipOval(
                           child: Image.asset(
-                            'assets/images/logo.png',
+                            'assets/images/application logo/logo.png',
                             width: 40,
                             height: 40,
                             fit: BoxFit.cover,
@@ -586,7 +554,6 @@ class _StoryViewerScreenState extends State<StoryViewerScreen> {
                 ],
               ),
             ),
-
             // Кнопка «Подробнее» внизу — прозрачно-матовая
             Positioned(
               bottom: 40, left: 16, right: 16,
@@ -608,9 +575,9 @@ class _StoryViewerScreenState extends State<StoryViewerScreen> {
                           builder: (_) => ClipRRect(
                             borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
                             child: BackdropFilter(
-                              filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+                              filter: ImageFilter.blur(sigmaX: 22, sigmaY: 22),
                               child: Container(
-                                color: Colors.black.withOpacity(0.45),
+                                color: Colors.white.withOpacity(0.30),
                                 padding: const EdgeInsets.all(24),
                                 child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
                                   Text(story.title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white)),
@@ -651,7 +618,6 @@ class _StoryViewerScreenState extends State<StoryViewerScreen> {
       ),
     );
   }
-
   // КОНТЕНТ ОДНОЙ ИСТОРИИ С ИЗОБРАЖЕНИЕМ (без текста контента)
   Widget _buildStoryContent(StoryData story) {
     return Stack(

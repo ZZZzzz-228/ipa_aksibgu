@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'screens/guest/guest_main_screen.dart';
-
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
@@ -9,10 +8,8 @@ void main() {
   ]);
   runApp(const MyApp());
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -38,18 +35,14 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 // ─────────────────────────────────────────────────────────────────────────────
 // Анимация при входе в приложение
 // ─────────────────────────────────────────────────────────────────────────────
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
-
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
-
 class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   late AnimationController _scaleController;
@@ -59,11 +52,9 @@ class _SplashScreenState extends State<SplashScreen>
   late Animation<double> _fadeAnimation;
   late Animation<double> _textFadeAnimation;
   late Animation<Offset> _textSlideAnimation;
-
   @override
   void initState() {
     super.initState();
-
     // Контроллер масштабирования иконки
     _scaleController = AnimationController(
       vsync: this,
@@ -72,7 +63,6 @@ class _SplashScreenState extends State<SplashScreen>
     _scaleAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: _scaleController, curve: Curves.elasticOut),
     );
-
     // Контроллер появления иконки
     _fadeController = AnimationController(
       vsync: this,
@@ -81,7 +71,6 @@ class _SplashScreenState extends State<SplashScreen>
     _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: _fadeController, curve: Curves.easeIn),
     );
-
     // Контроллер текста
     _textController = AnimationController(
       vsync: this,
@@ -96,22 +85,17 @@ class _SplashScreenState extends State<SplashScreen>
     ).animate(
       CurvedAnimation(parent: _textController, curve: Curves.easeOut),
     );
-
     _startAnimations();
   }
-
   void _startAnimations() async {
     // Небольшая пауза перед началом
     await Future.delayed(const Duration(milliseconds: 200));
-
     // Иконка появляется и масштабируется
     _fadeController.forward();
     _scaleController.forward();
-
     // Текст появляется чуть позже
     await Future.delayed(const Duration(milliseconds: 600));
     _textController.forward();
-
     // Переход на главный экран
     await Future.delayed(const Duration(milliseconds: 2000));
     if (mounted) {
@@ -127,7 +111,6 @@ class _SplashScreenState extends State<SplashScreen>
       );
     }
   }
-
   @override
   void dispose() {
     _scaleController.dispose();
@@ -135,7 +118,6 @@ class _SplashScreenState extends State<SplashScreen>
     _textController.dispose();
     super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -177,7 +159,7 @@ class _SplashScreenState extends State<SplashScreen>
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(28),
                     child: Image.asset(
-                      'assets/images/icon42.png',
+                      'assets/images/application logo/icon42.png',
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) => Container(
                         color: Colors.white,
@@ -189,7 +171,6 @@ class _SplashScreenState extends State<SplashScreen>
               ),
             ),
             const SizedBox(height: 32),
-
             // Анимированный текст
             SlideTransition(
               position: _textSlideAnimation,

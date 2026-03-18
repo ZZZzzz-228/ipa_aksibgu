@@ -1,24 +1,19 @@
 import 'package:flutter/material.dart';
 import '../student/student_main_screen.dart';
-
 class GuestProfileScreen extends StatefulWidget {
   const GuestProfileScreen({super.key});
-
   @override
   State<GuestProfileScreen> createState() => _GuestProfileScreenState();
 }
-
 class _GuestProfileScreenState extends State<GuestProfileScreen> {
   final _loginController = TextEditingController();
   final _passwordController = TextEditingController();
-
   @override
   void dispose() {
     _loginController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
-
   void _login() {
     if (_loginController.text.isNotEmpty && _passwordController.text.isNotEmpty) {
       Navigator.pushReplacement(
@@ -29,7 +24,6 @@ class _GuestProfileScreenState extends State<GuestProfileScreen> {
       );
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +40,7 @@ class _GuestProfileScreenState extends State<GuestProfileScreen> {
               // ЛОГОТИП ИЗ ASSETS
               ClipOval(
                 child: Image.asset(
-                  'assets/images/logo.png',
+                  'assets/images/application logo/logo.png',
                   width: 120,
                   height: 120,
                   fit: BoxFit.cover,
@@ -130,32 +124,6 @@ class _GuestProfileScreenState extends State<GuestProfileScreen> {
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    Center(
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Text(
-                            'Еще нет аккаунта?  ',
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: Colors.black87,
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {},
-                            child: const Text(
-                              'Зарегистрироваться',
-                              style: TextStyle(
-                                fontSize: 13,
-                                color: Color(0xFF4A90E2),
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ),
-                        ],
                       ),
                     ),
                   ],

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
 class CenteredAppBarTitle extends StatelessWidget {
   const CenteredAppBarTitle({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -13,7 +11,7 @@ class CenteredAppBarTitle extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: Image.asset(
-              'assets/images/logo.png',
+              'assets/images/application logo/logo.png',
               width: 40,
               height: 40,
               fit: BoxFit.cover,

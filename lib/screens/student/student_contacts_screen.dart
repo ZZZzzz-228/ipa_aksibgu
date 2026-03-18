@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../widgets/centered_app_bar_title.dart';
-
 class StudentContactsScreen extends StatelessWidget {
   const StudentContactsScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -170,7 +168,7 @@ class StudentContactsScreen extends StatelessWidget {
                         shape: BoxShape.circle,
                         border: Border.all(color: Colors.white, width: 3),
                         image: const DecorationImage(
-                          image: AssetImage('assets/images/director_photo.png'),
+                          image: AssetImage('assets/images/contacts/director_photo.png'),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -280,7 +278,6 @@ class StudentContactsScreen extends StatelessWidget {
       ),
     );
   }
-
   Widget _buildContactItem(IconData icon, String text, Color color) {
     return GestureDetector(
       onTap: () async {
