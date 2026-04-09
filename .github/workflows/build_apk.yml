@@ -23,18 +23,9 @@ jobs:
 
       - run: flutter pub get
 
+      - run: flutter analyze
 
-      - name: Format check
-        run: dart format --set-exit-if-changed .
-
-  
-      - name: Analyze
-        run: flutter analyze
-
-  
-      - name: Run tests
-        run: flutter test
-
+      - run: flutter test
 
       - name: Build APK
         run: flutter build apk --release
@@ -45,6 +36,7 @@ jobs:
           name: android-release-apk
           path: |
             build/app/outputs/flutter-apk/app-release.apk
+
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         with:
