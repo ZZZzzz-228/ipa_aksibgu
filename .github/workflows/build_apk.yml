@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup Java
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 17
@@ -20,11 +20,12 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
+          flutter-version: '3.24.0'
 
       - run: flutter pub get
 
       - name: Analyze (do not fail)
-        run: flutter analyze || true
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings || true
 
       - name: Run tests (do not fail)
         run: flutter test || true
