@@ -34,12 +34,13 @@ jobs:
 
       # Сохранить APK как артефакт
       - name: Upload APK artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: android-release-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+          path: |
+            build/app/outputs/flutter-apk/app-release.apk
 
-      # Опционально: как в iOS — залить в релиз
+      # Опционально: залить APK в GitHub Release (если нужно)
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         with:
