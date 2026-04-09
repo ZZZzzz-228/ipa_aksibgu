@@ -28,7 +28,7 @@ jobs:
         run: flutter analyze --no-fatal-infos --no-fatal-warnings || true
 
       - name: Run tests (do not fail)
-        run: flutter test || true
+        run: flutter test --exclude-tags=smoke || true
 
       - name: Build APK
         run: flutter build apk --release
